@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class AopController {
     private Logger logger=Logger.getLogger(String.valueOf(getClass()));
     @GetMapping("test")
+    @Log(tag = "我是注解")
     public String aop(){
         logger.info("业务代码执行中...");
         return "aop 测试";

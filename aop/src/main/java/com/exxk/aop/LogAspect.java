@@ -1,15 +1,18 @@
 package com.exxk.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.util.logging.Logger;
 
 @Aspect
@@ -18,7 +21,9 @@ public class LogAspect {
     private Logger logger=Logger.getLogger(String.valueOf(getClass()));
 
     //定义切入点
-    @Pointcut("execution(public * com.exxk.aop.AopController.aop())")
+    //@Pointcut("execution(public * com.exxk.aop..*Controller.*(..))")
+    //@Pointcut("execution(public * com.exxk.aop.AopController.aop())")
+    @Pointcut("@annotation(com.exxk.aop.Log)")
     public void pointCut(){}
 
     //切入点前插入的内容
@@ -30,6 +35,12 @@ public class LogAspect {
             HttpServletRequest request=attributes.getRequest();
             logger.info("URL:"+request.getRequestURL().toString());
         }
+        //获取注解
+        Signature signature = joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        Method method = methodSignature.getMethod();
+        Log log= method.getAnnotation(Log.class);
+        logger.info("获取注解内容："+log.tag());
     }
 
     @AfterReturning(returning = "ret",pointcut = "pointCut()")
