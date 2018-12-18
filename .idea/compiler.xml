@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="aop_main" target="1.8" />
       <module name="aop_test" target="1.8" />
+      <module name="springLeaning_main" target="1.8" />
+      <module name="springLeaning_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
