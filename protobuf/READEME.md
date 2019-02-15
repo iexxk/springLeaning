@@ -4,9 +4,9 @@
 
 3. 编写一个测试`PersonMsg.proto`文件
 
-4. 使用工具进行java代码生成，执行`.\protobuf\protoc-3.6.1-win32.exe --java_out=.\protobuf\src\main\java\com\exxk\protobuf\  .\protobuf\src\test\protobuf\PersonMsg.proto`
+4. 使用工具进行java代码生成，执行`.\protobuf\protoc-3.6.1-win32.exe --java_out=.\protobuf\src\main\java\  .\protobuf\src\test\protobuf\PersonMsg.proto`
 
-   注意，这里生成的代码`PersonMsg.java`里面是没有包名的，可以手动加入
+   注意，如果没有只当在proto指定包名需要手动加入
 
 5. 在`ProtobufApplicationTests.java`编写测试方法
 

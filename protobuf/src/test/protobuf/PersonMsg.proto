@@ -1,3 +1,12 @@
+//指定编译版本2或3
+syntax = "proto2";
+//当前包名
+package PersonMsg;
+//包路径
+option java_package = "com.exxk.protobuf";
+//类名
+option java_outer_classname = "PersonMsg";
+
 message Person {
 
     // ID（必需）
@@ -11,4 +20,7 @@ message Person {
 
     // 朋友（集合）
     repeated string friends = 4;
+}
+
+message car {
 }
