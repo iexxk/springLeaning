@@ -10,3 +10,4 @@
 rootProject.name = 'springLeaning'
 include 'aop'
 include 'shiro'
+include 'protobuf'
