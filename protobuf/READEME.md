@@ -10,4 +10,62 @@
 
 5. 在`ProtobufApplicationTests.java`编写测试方法
 
+### protoc gradle插件
+
+插件地址：[google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin#latest-version)
+
+1. 在父级`build.gradle`添加
+
+   ```groovy
+   buildscript {
+     repositories {
+       mavenCentral()
+     }
+     dependencies {
+       classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
+     }
+   }
+   ```
+
+2. 在子项目`build.gradle`添加
+
+   ```groovy
+   apply plugin: 'com.google.protobuf'
    
+   dependencies {
+       compile 'com.google.protobuf:protobuf-java:3.6.1'
+   }
+   
+   sourceSets {
+       main {
+           proto {
+               // In addition to the default 'src/main/proto'
+               //proto输入目录
+               srcDir 'src/main/protobuf'
+               srcDir 'src/main/protocolbuffers'
+               srcDir 'src/main/protocol buffers'
+               // In addition to '**/*.proto' (use with caution).
+               // Using an extension other than 'proto' is NOT recommended, because when
+               // proto files are published along with class files, we can only tell the
+               // type of a file from its extension.
+               include '**/*.protodevel'
+           }
+       }
+       test {
+           proto {
+               // In addition to the default 'src/test/proto'
+               srcDir 'src/test/protocolbuffers'
+           }
+       }
+   }
+   protobuf {
+       //输出目录
+       generatedFilesBaseDir = "$projectDir/src"
+       protoc {
+           //protoc编译版本
+           artifact = 'com.google.protobuf:protoc:3.0.0'
+       }
+   }
+   ```
+
+3. 然后点击右侧gradle`protobuf->Tasks->other->generateProto`编译proto文件生成java文件

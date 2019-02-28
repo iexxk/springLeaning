@@ -1,6 +1,7 @@
 package com.exxk.protobuf;
 
 
+import com.exxk.protobuf.protojava.PersonMsg;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
