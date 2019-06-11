@@ -1,4 +1,4 @@
-package com.exxk.netty.netty;
+package com.exxk.netty;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
