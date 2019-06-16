@@ -1,0 +1,4 @@
+dependencies {
+    runtime('mysql:mysql-connector-java')
+
+}
