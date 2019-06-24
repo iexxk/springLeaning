@@ -35,7 +35,7 @@ public class MegBoxBinaryUtil {
         byte[] json = new byte[this.headLen];
         System.arraycopy(this.orign, 8 + 4 + 4, json, 0, json.length);
         this.jsonObject = new JsonParser().parse(new String(json).trim()).getAsJsonObject();
-        log.info("json result: " + this.jsonObject.getAsString() + " ,byte: {}", DatatypeConverter.printHexBinary(json));
+        log.info("json result: " + this.jsonObject.toString() + " ,byte: {}", DatatypeConverter.printHexBinary(json));
 
         //captureFace length
         if (this.type.equals("Capture")) {
