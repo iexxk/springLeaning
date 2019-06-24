@@ -1,5 +1,9 @@
 package com.exxk.websocketendpoint;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 测试地址
  *
  */
-@ServerEndpoint(value = "/ws/asset")
+@ServerEndpoint(value = "/")
 @Component
 public class WebSocketServer {
 
@@ -57,8 +61,22 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session session) {
         log.info("来自客户端的消息：{}",message);
-        SendMessage(session, "收到消息，消息内容："+message);
-
+        if (JsonUtil.validate(message)) {
+            JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
+            String devicesId = "";
+            String timestamp="";
+            if (jsonObject.has("devicesId")) {
+                 devicesId = jsonObject.get("devicesId").getAsString();
+            }
+            if (jsonObject.has("timestamp")){
+                 timestamp = jsonObject.get("timestamp").getAsString();
+            }
+            String msg_ack = devicesId + "_" + timestamp + "_" + "ACK";
+            SendMessage(session, msg_ack);
+        }else {
+            SendMessage(session, "error json: " + message);
+        }
+    //    BroadCastInfo(msg_ack);
     }
 
     /**
@@ -79,7 +97,8 @@ public class WebSocketServer {
      */
     public static void SendMessage(Session session, String message) {
         try {
-            session.getBasicRemote().sendText(String.format("%s (From Server，Session ID=%s)",message,session.getId()));
+            session.getBasicRemote().sendText(message);
+            log.info("发送消息：{}",message);
         } catch (IOException e) {
             log.error("发送消息出错：{}", e.getMessage());
             e.printStackTrace();
@@ -91,7 +110,7 @@ public class WebSocketServer {
      * @param message
      * @throws IOException
      */
-    public static void BroadCastInfo(String message) throws IOException {
+    public static void BroadCastInfo(String message) {
         for (Session session : SessionSet) {
             if(session.isOpen()){
                 SendMessage(session, message);
