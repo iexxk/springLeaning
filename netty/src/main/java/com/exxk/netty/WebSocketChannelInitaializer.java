@@ -11,9 +11,14 @@ import io.netty.handler.codec.http.websocketx.extensions.compression.WebSocketSe
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class WebSocketChannelInitaializer extends ChannelInitializer<SocketChannel> {
 
+    @Autowired
+    ConfigData configData;
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
@@ -32,7 +37,7 @@ public class WebSocketChannelInitaializer extends ChannelInitializer<SocketChann
         // 服务器端向外暴露的 web socket 端点，当客户端传递比较大的对象时，maxFrameSize参数的值需要调大
         //maxFrameSize解决数据过大异常 Max frame length of 65536 has been exceeded.
         //ws为访问websocket时的uri
-        pipeline.addLast(new WebSocketServerProtocolHandler("/ws", null, true, 65536*10));
+        pipeline.addLast(new WebSocketServerProtocolHandler(configData.websocketPath, null, true, configData.maxFrameSize));
 //        //自定义的处理器，这个是公用的可以接收文本和二进制
 //        pipeline.addLast(new WebSocketFrameHandler());
         //下面分开接收
@@ -40,6 +45,8 @@ public class WebSocketChannelInitaializer extends ChannelInitializer<SocketChann
         pipeline.addLast(new TextWebSocketFrameHandler());
         // 自定义处理器 - 处理 web socket 二进制消息
         pipeline.addLast(new BinaryWebSocketFrameHandler());
+
+        pipeline.addLast(new HttpWebSocketFrameHandler());
 
 
     }

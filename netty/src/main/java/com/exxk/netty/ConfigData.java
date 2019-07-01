@@ -9,5 +9,11 @@ public class ConfigData {
 
 	@Value("${netty.websocket.port}")
 	public Integer websocketPort;
+
+	@Value("${netty.websocket.path}")
+	public String websocketPath;
+
+	@Value("${netty.websocket.maxFrameSize}")
+	public Integer maxFrameSize;
 	
 }

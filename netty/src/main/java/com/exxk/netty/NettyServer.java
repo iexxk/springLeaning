@@ -30,6 +30,9 @@ public class NettyServer {
     @Autowired
     ConfigData configData;
 
+    @Autowired
+    WebSocketChannelInitaializer webSocketChannelInitaializer;
+
     /**
      * 启动Netty Server
      *
@@ -40,7 +43,7 @@ public class NettyServer {
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         //使用服务端初始化自定义类WebSocketChannelInitaializer
-        serverBootstrap.group(boosGrop, workerGrop).channel(NioServerSocketChannel.class).childHandler(new WebSocketChannelInitaializer());
+        serverBootstrap.group(boosGrop, workerGrop).channel(NioServerSocketChannel.class).childHandler(webSocketChannelInitaializer);
 
         //使用了不同的端口绑定方式
         ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(configData.websocketPort)).sync();
