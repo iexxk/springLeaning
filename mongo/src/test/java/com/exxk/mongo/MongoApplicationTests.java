@@ -79,10 +79,6 @@ public class MongoApplicationTests {
         mongoTemplate.upsert(query,update,User.class);
     }
 
-    @Test
-    public void aa(){
-
-    }
 
     @Test
     public void ss(){
@@ -161,5 +157,18 @@ public class MongoApplicationTests {
 //        TimeUnit.MINUTES.sleep(5);
 //
 //    }
+
+    @Test
+    public void addDbrefUser(){
+        DbrefUser dbrefUser=new DbrefUser();
+        dbrefUser.setAddress("dasd");
+        BaseUser baseUser=new BaseUser();
+        baseUser.setAge(12);
+        baseUser.setName("wangwu");
+        baseUser.setId("234324");
+        dbrefUser.setBaseUser(baseUser);
+        mongoTemplate.save(dbrefUser);
+
+    }
 
 }
