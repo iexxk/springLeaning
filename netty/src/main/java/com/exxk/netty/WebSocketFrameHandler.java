@@ -1,13 +1,17 @@
 package com.exxk.netty;
 
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
+@ChannelHandler.Sharable
 public class WebSocketFrameHandler extends SimpleChannelInboundHandler<Object> {
     private final Logger log = LoggerFactory.getLogger(WebSocketFrameHandler.class);
 

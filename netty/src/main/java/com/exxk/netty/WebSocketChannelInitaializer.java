@@ -20,6 +20,19 @@ public class WebSocketChannelInitaializer extends ChannelInitializer<SocketChann
     @Autowired
     ConfigData configData;
 
+
+    @Autowired
+    HttpWebSocketFrameHandler httpWebSocketFrameHandler;
+
+    @Autowired
+    BinaryWebSocketFrameHandler binaryWebSocketFrameHandler;
+
+    @Autowired
+    TextWebSocketFrameHandler textWebSocketFrameHandler;
+
+    @Autowired
+    WebSocketChannelInitaializer webSocketChannelInitaializer;
+
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
@@ -39,14 +52,14 @@ public class WebSocketChannelInitaializer extends ChannelInitializer<SocketChann
         //ws为访问websocket时的uri
         pipeline.addLast(new WebSocketServerProtocolHandler(configData.websocketPath, null, true, configData.maxFrameSize));
 //        //自定义的处理器，这个是公用的可以接收文本和二进制
-//        pipeline.addLast(new WebSocketFrameHandler());
+//        pipeline.addLast(webSocketChannelInitaializer);
         //下面分开接收
         // 自定义处理器 - 处理 web socket 文本消息
-        pipeline.addLast(new TextWebSocketFrameHandler());
+        pipeline.addLast(textWebSocketFrameHandler);
         // 自定义处理器 - 处理 web socket 二进制消息
-        pipeline.addLast(new BinaryWebSocketFrameHandler());
+        pipeline.addLast(binaryWebSocketFrameHandler);
 
-        pipeline.addLast(new HttpWebSocketFrameHandler());
+        pipeline.addLast(httpWebSocketFrameHandler);
 
 
     }
