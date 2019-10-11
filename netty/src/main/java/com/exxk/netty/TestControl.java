@@ -10,7 +10,7 @@ public class TestControl {
 
     @GetMapping("/hello")
     public String test(){
-
+        //8080访问
         return "hello world";
     }
 
