@@ -3,7 +3,8 @@ buildscript {
         springBootVersion = '2.1.1.RELEASE'
     }
     repositories {
-        mavenCentral()
+        mavenCentral() //由下面的阿里云仓库替代
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -22,7 +23,8 @@ allprojects {
     sourceCompatibility = 1.8
 
     repositories {
-        mavenCentral()
+        mavenCentral() //由下面的阿里云仓库替代
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
 
 
