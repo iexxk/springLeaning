@@ -31,6 +31,7 @@
 ```
 返回结果：
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <service version="2.00">
     <BODY>
         <TX_CODE attr="s,103">facecompare4</TX_CODE>
