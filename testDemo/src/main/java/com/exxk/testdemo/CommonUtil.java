@@ -10,8 +10,7 @@ import java.io.FileInputStream;
 
 
 /**  
- * <p>Description: 通用工具类</p>  
- * @author xiangqing  
+ * <p>Description: 通用工具类</p>
  * @date 2018年3月27日  
  * @version 1.0  
 */
