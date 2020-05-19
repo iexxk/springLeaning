@@ -16,7 +16,7 @@ import java.net.*;
 
 public class AddFaceTest {
 
-	private static final Logger log = LoggerFactory.getLogger("aaa");
+	private static final Logger log = LoggerFactory.getLogger(AddFaceTest.class);
 
 	public void createGroupTest() {
 		

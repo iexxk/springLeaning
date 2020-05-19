@@ -8,7 +8,7 @@ buildscript {
                 username 'read'
                 password 'read123'
             }
-            url 'http://10.10.10.11:14006/repository/maven-public/'
+            url 'http://gt163.cn:14006/repository/maven-public/'
         }
 //        mavenCentral() //由上面的私仓库替代
     }
@@ -34,7 +34,7 @@ allprojects {
                 username 'read'
                 password 'read123'
             }
-            url 'http://10.10.10.11:14006/repository/maven-public/'
+            url 'http://gt163.cn:14006/repository/maven-public/'
         }
 //        mavenCentral() //由上面的私仓库替代
     }
