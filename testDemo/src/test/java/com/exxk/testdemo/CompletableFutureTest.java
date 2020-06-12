@@ -41,7 +41,7 @@ public class CompletableFutureTest {
             log.info("1+2="+t+u);
             return t + " " + u;
         });
-        log.info("bbbb");
+        log.info("bbbbb");
         log.info(result.get());
         log.info("aaaa");
 
