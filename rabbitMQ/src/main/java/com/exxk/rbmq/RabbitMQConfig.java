@@ -1,7 +1,5 @@
 package com.exxk.rbmq;
 
-import org.springframework.amqp.core.MessageListener;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ public class RabbitMQConfig {
     RbMQReceiverHandler rbMQReceiverHandler;
 
     @Bean
-    public SimpleMessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory){
+    public SimpleMessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         container.setQueueNames("test1_staff");
