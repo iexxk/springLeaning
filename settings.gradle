@@ -18,3 +18,5 @@ include 'testDemo'
 include 'kafka'
 include 'mongo'
 include 'xml'
+include 'rabbitMQ'
+
