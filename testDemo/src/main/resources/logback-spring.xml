@@ -10,6 +10,10 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <springProperty scope="context" name="APP_NAME" source="spring.application.name" />
     <!--日志输出类型,可在配置文件通过spring.cloud.config.logback-profile进行设置日志输出类型   -->
     <springProperty scope="context" name="LOG_TYPE" source="spring.cloud.config.logback-profile" />
+    <!--EFK ip -->
+    <springProperty scope="context" name="fluentHost" source="logback.fluent.host" />
+    <!--EFK 端口 -->
+    <springProperty scope="context" name="fluentPort" source="logback.fluent.port" />
     <!--定义日志的目录，logs为项目根目录下logs目录 -->
     <property name="LOG_PATH" value="logs" />
     <!--定义日志的文件名 -->
@@ -42,6 +46,18 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!--控制台输出:也就是前端显示输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${LOG_FORMAT}</pattern>
+        </layout>
+    </appender>
+
+    <!--FLUENT输出    -->
+    <appender name="FLUENT"
+              class="ch.qos.logback.more.appenders.FluentLogbackAppender">
+        <tag>${APP_NAME}</tag>
+        <label>logback</label>
+        <remoteHost>${fluentHost}</remoteHost>
+        <port>${fluentPort}</port>
+        <layout>
             <pattern>${LOG_FORMAT}</pattern>
         </layout>
     </appender>
