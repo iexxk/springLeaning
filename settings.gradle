@@ -19,4 +19,6 @@ include 'kafka'
 include 'mongo'
 include 'xml'
 include 'rabbitMQ'
+include 'adminServer'
+include 'adminClient'
 
