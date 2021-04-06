@@ -22,7 +22,7 @@ public class CommonUtil {
 
 
 	/**
-	 * megbox 图片MD5加密
+	 *  图片MD5加密
 	 */
 	public static String imageMD5(File file)  {
 		String md5 = CommonUtil.md5EncryptForFile(file);
