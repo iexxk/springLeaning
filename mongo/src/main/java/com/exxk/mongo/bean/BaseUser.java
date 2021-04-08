@@ -1,12 +1,15 @@
-package com.exxk.mongo;
+package com.exxk.mongo.bean;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
+
 
 @Document(collection = "base_user_info")
-public class BaseUser {
+public class BaseUser implements Serializable {
+    private static final long serialVersionUID = -367612951546908830L;
     @Id
     private String id;
     @Field("name")

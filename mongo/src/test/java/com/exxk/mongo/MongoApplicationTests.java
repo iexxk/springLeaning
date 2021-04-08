@@ -1,5 +1,8 @@
 package com.exxk.mongo;
 
+import com.exxk.mongo.bean.BaseUser;
+import com.exxk.mongo.bean.DbrefUser;
+import com.exxk.mongo.bean.User;
 import com.mongodb.BasicDBObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
