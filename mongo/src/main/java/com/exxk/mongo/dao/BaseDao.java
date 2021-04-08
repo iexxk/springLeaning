@@ -26,7 +26,7 @@ public interface BaseDao<T, ID> {
     /**
      * 删除所有数据
      */
-    @CacheEvict(key = "#root.target.table",allEntries = true,condition ="#root.target.isCache") //删除所有是删除mongo所有的表，粒度不能到key
+    @CacheEvict(key = "#root.target.table+'*'",condition ="#root.target.isCache") //删除所有是删除mongo所有的表，粒度不能到key
     void deleteAll();
 
 
