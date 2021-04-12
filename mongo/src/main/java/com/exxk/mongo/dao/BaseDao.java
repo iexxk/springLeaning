@@ -12,6 +12,7 @@ import org.springframework.cache.annotation.Cacheable;
  * @param <ID>
  */
 @CacheConfig(cacheNames = {"mongo"})
+//@CustomizeCacheConfig
 public interface BaseDao<T, ID> {
 
     /**
