@@ -23,7 +23,7 @@ public class LogAspect {
     //定义切入点
     //@Pointcut("execution(public * com.exxk.aop..*Controller.*(..))")
     //@Pointcut("execution(public * com.exxk.aop.AopController.aop())")
-    @Pointcut("@annotation(com.exxk.aop.Log)")
+    @Pointcut("@annotation(com.exxk.aop.Log)||@annotation(com.exxk.aop.SimpleLog)")
     public void pointCut(){}
 
     //切入点前插入的内容
@@ -40,7 +40,7 @@ public class LogAspect {
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
         Log log= method.getAnnotation(Log.class);
-        logger.info("获取注解内容："+log.tag());
+        logger.info("获取注解内容："+log);
     }
 
     @AfterReturning(returning = "ret",pointcut = "pointCut()")
