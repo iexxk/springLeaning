@@ -27,6 +27,12 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 指定日志文件的名称 -->
         <file>${LOG_FILE_NAME}</file>
+        <!-- 自定义日志       -->
+        <encoder class="com.exxk.testdemo.CustomizePatternLayoutEncoder">
+            <useDefaultRegex>true</useDefaultRegex>
+            <policy>replace</policy>
+            <maxLength>2048</maxLength>
+        </encoder>
         <!--日志文件分割机制-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_FILE_NAME_PATTERN}</fileNamePattern>

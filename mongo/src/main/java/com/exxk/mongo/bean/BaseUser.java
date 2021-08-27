@@ -1,10 +1,12 @@
 package com.exxk.mongo.bean;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Document(collection = "base_user_info")
@@ -16,6 +18,18 @@ public class BaseUser implements Serializable {
     private String name;
     @Field("age")
     private Integer age;
+
+    @Indexed
+    @Field("_company_ids")
+    private List<String> companyIds;
+
+    public List<String> getCompanyIds() {
+        return companyIds;
+    }
+
+    public void setCompanyIds(List<String> companyIds) {
+        this.companyIds = companyIds;
+    }
 
     public String getId() {
         return id;
