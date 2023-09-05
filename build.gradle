@@ -3,14 +3,14 @@ buildscript {
         springBootVersion = '2.2.2.RELEASE'
     }
     repositories {
-        maven {
-            credentials {
-                username 'read'
-                password 'read123'
-            }
-            url 'http://gt163.cn:14006/repository/maven-public/'
-        }
-//        mavenCentral() //由上面的私仓库替代
+//        maven {
+//            credentials {
+//                username 'read'
+//                password 'read123'
+//            }
+//            url 'http://gt163.cn:14006/repository/maven-public/'
+//        }
+        mavenCentral() //由上面的私仓库替代
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -29,14 +29,14 @@ allprojects {
     sourceCompatibility = 1.8
 
     repositories {
-        maven {
-            credentials {
-                username 'read'
-                password 'read123'
-            }
-            url 'http://gt163.cn:14006/repository/maven-public/'
-        }
-//        mavenCentral() //由上面的私仓库替代
+//        maven {
+//            credentials {
+//                username 'read'
+//                password 'read123'
+//            }
+//            url 'http://gt163.cn:14006/repository/maven-public/'
+//        }
+        mavenCentral() //由上面的私仓库替代
     }
 
 
